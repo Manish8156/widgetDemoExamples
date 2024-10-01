@@ -26,13 +26,13 @@ class _NavigationKeysState extends State<NavigationKeys> {
             onTapDown: (det) {
               updateDirection(Direction.up);
             },
-            onTapUp: (dets) {
+            onTapUp: (det) {
               updateDirection(Direction.none);
             },
             onLongPressDown: () {
               updateDirection(Direction.up);
             },
-            onLongPressEnd: (dets) {
+            onLongPressEnd: (det) {
               updateDirection(Direction.none);
             },
           ),
