@@ -1,15 +1,15 @@
 
-buildscript {
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0' // Update to a version compatible with your Java version
-    }
-}
 
 allprojects {
     repositories {
         google()
         mavenCentral()
     }
+}
+
+dependencies {
+    classpath 'com.android.tools.build:gradle:7.0.0'
+    // Update to a version compatible with your Java version
 }
 
 rootProject.buildDir = "../build"
