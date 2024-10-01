@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             the Flutter engine draws its first frame -->
+        <item name="android:windowSplashScreenBackground">@color/launcherBackground </item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/launcherBackground</item>
+<!--        <item name="android:windowSplashScreenBackground">@drawable/gmail</item>-->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/untitled</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/branding_b_logo</item>
+    </style>
+</resources>
