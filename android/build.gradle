@@ -5,6 +5,12 @@ allprojects {
     }
 }
 
+buildscript {
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.0' // Update to a version compatible with your Java version
+    }
+}
+
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
