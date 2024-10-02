@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         flavor: [Development, Staging, Production]  # Define the flavors here
-        file: [main_development,main_staging,main_production]
+        main_file: [main_devlopment.dart, main_staging.dart, main_production.dart]  # Define the entry point files
 
     steps:
       - uses: actions/checkout@v3
@@ -34,13 +34,13 @@ jobs:
           channel: 'stable'
           architecture: x64
 
-      # Android Build for each flavor
-      - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/${matrix.file}.dart --split-per-abi
+      # Build APK for each flavor with a specific entry point
+      - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/${{ matrix.main_file }}
         name: Build APK for ${{ matrix.flavor }}
 
-      # iOS Build for each flavor
+      # Build iOS app for each flavor with a specific entry point
       - run: |
-          flutter build ios --flavor ${{ matrix.flavor }} --no-codesign
+          flutter build ios --flavor ${{ matrix.flavor }} --release --no-codesign -t lib/${{ matrix.main_file }}
           cd build/ios/iphoneos
           mkdir Payload
           cd Payload
@@ -49,11 +49,11 @@ jobs:
           zip -r app-${{ matrix.flavor }}.ipa Payload
         name: Build iOS App for ${{ matrix.flavor }}
 
-      # Upload artifacts for each flavor
+      # Upload the artifacts (APK/IPA) for each flavor
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
           artifacts: |
-            build/app/outputs/apk/${{ matrix.flavor }}/*,build/ios/iphoneos/app-${{ matrix.flavor }}.ipa
+            build/app/outputs/apk/release/app-${{ matrix.flavor }}-release.apk,build/ios/iphoneos/app-${{ matrix.flavor }}.ipa
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
