@@ -59,8 +59,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: |
-            build/app/outputs/apk/release/app-${{ matrix.flavor }}-release.apk,
-            build/ios/iphoneos/app-${{ matrix.flavor }}.ipa
+            build/app/outputs/apk/release/app-${{ matrix.flavor }}-release.apk,build/ios/iphoneos/app-${{ matrix.flavor }}.ipa
           tag: v1.0.${{ github.run_number }}-${{ matrix.flavor }}
           release_name: Release v1.0.${{ github.run_number }}-${{ matrix.flavor }}
           token: ${{ secrets.TOKEN }}
