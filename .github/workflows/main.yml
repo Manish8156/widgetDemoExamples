@@ -19,6 +19,7 @@ jobs:
     strategy:
       matrix:
         flavor: [Development, Staging, Production]  # Define the flavors here
+        file: [main_development,main_staging,main_production]
 
     steps:
       - uses: actions/checkout@v3
@@ -34,7 +35,7 @@ jobs:
           architecture: x64
 
       # Android Build for each flavor
-      - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/main_staging.dart --split-per-abi
+      - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/${matrix.file}.dart --split-per-abi
         name: Build APK for ${{ matrix.flavor }}
 
       # iOS Build for each flavor
