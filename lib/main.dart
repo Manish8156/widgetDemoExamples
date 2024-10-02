@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:widgets_demo_examples/flutter_flame/dino_game.dart';
 import 'flutter_flame/game_screen.dart';
 
-mainAppRun() async {
+Future<void> mainAppRun() async {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
   Flame.device.setLandscape();
@@ -13,6 +13,7 @@ mainAppRun() async {
   // await Injector.setUp();
   // await sl<HiveAppRepository>().registerAdapters();
   // await sl<HiveAppRepository>().openBoxes();
+
   final game = DinoGame();
   runApp(MyApp(
     game: game,
