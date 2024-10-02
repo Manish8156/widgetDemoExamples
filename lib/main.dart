@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       // navigatorKey: ContextUtility.navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flutter',
       routerConfig: GoRouter(routes: [
         GoRoute(
           path: "/",
