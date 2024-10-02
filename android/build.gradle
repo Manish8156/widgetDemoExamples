@@ -7,10 +7,9 @@ allprojects {
     }
 }
 
-dependencies {
-    classpath 'com.android.tools.build:gradle:7.0.0'
-    // Update to a version compatible with your Java version
-}
+//dependencies {
+//    classpath 'com.android.tools.build:gradle:7.0.0'
+//}
 
 rootProject.buildDir = "../build"
 subprojects {
