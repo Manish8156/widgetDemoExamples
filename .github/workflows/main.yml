@@ -18,8 +18,13 @@ jobs:
 
     strategy:
       matrix:
-        flavor: [Development, Staging, Production]  # Define the flavors here
-        main_file: [main_devlopment.dart, main_staging.dart, main_production.dart]  # Define the entry point files
+        include:
+          - flavor: Development
+            main_file: main_devlopment.dart
+          - flavor: Staging
+            main_file: main_staging.dart
+          - flavor: Production
+            main_file: main_production.dart
 
     steps:
       - uses: actions/checkout@v3
