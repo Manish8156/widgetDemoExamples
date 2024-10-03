@@ -108,7 +108,7 @@ jobs:
       - name: Install Flutter 3.24.3
         run: |
           git clone https://github.com/flutter/flutter.git --branch 3.24.3 --depth 1
-          echo "::add-path::Users/mind/Documents/sdk/flutter/bin"
+          echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
           flutter --version
 
       # Build APK for each flavor with a specific entry point
