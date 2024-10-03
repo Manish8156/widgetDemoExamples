@@ -107,9 +107,16 @@ jobs:
       # Step to manually install Flutter 3.24.3
       - name: Install Flutter 3.24.3
         run: |
-          git clone https://github.com/flutter/flutter.git --branch 3.24.3 --depth 1
-          echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
-          flutter --version
+          git clone https://github.com/flutter/flutter.git --branch 3.5.0 --depth 1
+          
+           # Add Flutter to the PATH
+           echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
+          
+           # List the contents of the flutter/bin directory to confirm it exists
+           ls -l "${{ github.workspace }}/flutter/bin"
+          
+           # Verify that Flutter is now accessible
+           flutter --version  
 
       # Build APK for each flavor with a specific entry point
       - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/${{ matrix.main_file }}
