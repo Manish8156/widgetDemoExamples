@@ -1,72 +1,4 @@
 # for undefined version(by default its takes latest stable version)
-on:
-  pull_request:
-    branches:
-      - main
-      - master
-  push:
-    branches:
-      - main
-      - master
-      - develop
-
-name: "Build & Release"
-
-jobs:
-  build:
-    name: Build & Release
-    runs-on: macos-latest
-
-    strategy:
-      matrix:
-        include:
-          - flavor: Development
-            main_file: main_devlopment.dart
-          - flavor: Staging
-            main_file: main_staging.dart
-          - flavor: Production
-            main_file: main_production.dart
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: '23'
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          architecture: x64
-
-      # Build APK for each flavor with a specific entry point
-      - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/${{ matrix.main_file }}
-        name: Build APK for ${{ matrix.flavor }}
-
-      # Build iOS app for each flavor with a specific entry point
-      - run: |
-          flutter build ios --flavor ${{ matrix.flavor }} --release --no-codesign -t lib/${{ matrix.main_file }}
-          cd build/ios/iphoneos
-          mkdir Payload
-          cd Payload
-          ln -s ../Runner.app
-          cd ..
-          zip -r app-${{ matrix.flavor }}.ipa Payload
-        name: Build iOS App for ${{ matrix.flavor }}
-
-      # Upload the artifacts (APK/IPA) for each flavor
-      - name: Push to Releases
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: |
-            build/app/outputs/apk/${{ matrix.flavor }}/release/app-${{ matrix.flavor }}-release.apk,build/ios/iphoneos/app-${{ matrix.flavor }}.ipa
-          tag: v1.0.${{ github.run_number }}-${{ matrix.flavor }}
-          release_name: Release v1.0.${{ github.run_number }}-${{ matrix.flavor }}
-          token: ${{ secrets.TOKEN }}
-
-
-# (manually add the flutter version for CI/CD pipeline)
 #on:
 #  pull_request:
 #    branches:
@@ -77,7 +9,6 @@ jobs:
 #      - main
 #      - master
 #      - develop
-#      - manish
 #
 #name: "Build & Release"
 #
@@ -90,7 +21,7 @@ jobs:
 #      matrix:
 #        include:
 #          - flavor: Development
-#            main_file: main_development.dart
+#            main_file: main_devlopment.dart
 #          - flavor: Staging
 #            main_file: main_staging.dart
 #          - flavor: Production
@@ -104,12 +35,10 @@ jobs:
 #          distribution: 'zulu'
 #          java-version: '23'
 #
-#      # Step to manually install Flutter 3.24.3
-#      - name: Install Flutter 3.24.3
-#        run: |
-#          git clone  --branch 3.24.3 https://github.com/flutter/flutter.git --depth 1
-#           echo "${{ github.workspace }}/flutter/bin/flutter" >> $GITHUB_PATH
-#           flutter --version
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#          architecture: x64
 #
 #      # Build APK for each flavor with a specific entry point
 #      - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/${{ matrix.main_file }}
@@ -135,3 +64,74 @@ jobs:
 #          tag: v1.0.${{ github.run_number }}-${{ matrix.flavor }}
 #          release_name: Release v1.0.${{ github.run_number }}-${{ matrix.flavor }}
 #          token: ${{ secrets.TOKEN }}
+
+
+# (manually add the flutter version for CI/CD pipeline)
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - manish
+
+name: "Build & Release"
+
+jobs:
+  build:
+    name: Build & Release
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        include:
+          - flavor: Development
+            main_file: main_development.dart
+          - flavor: Staging
+            main_file: main_staging.dart
+          - flavor: Production
+            main_file: main_production.dart
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '23'
+
+      # Step to manually install Flutter 3.24.3
+      - name: Install Flutter 3.24.3
+        run: |
+          git clone -b 3.24.3 https://github.com/flutter/flutter.git
+           echo "${{ github.workspace }}/flutter/bin/flutter" >> $GITHUB_PATH
+           flutter --version  
+
+      # Build APK for each flavor with a specific entry point
+      - run: flutter build apk --flavor ${{ matrix.flavor }} --release -t lib/${{ matrix.main_file }}
+        name: Build APK for ${{ matrix.flavor }}
+
+      # Build iOS app for each flavor with a specific entry point
+      - run: |
+          flutter build ios --flavor ${{ matrix.flavor }} --release --no-codesign -t lib/${{ matrix.main_file }}
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app-${{ matrix.flavor }}.ipa Payload
+        name: Build iOS App for ${{ matrix.flavor }}
+
+      # Upload the artifacts (APK/IPA) for each flavor
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            build/app/outputs/apk/${{ matrix.flavor }}/release/app-${{ matrix.flavor }}-release.apk,build/ios/iphoneos/app-${{ matrix.flavor }}.ipa
+          tag: v1.0.${{ github.run_number }}-${{ matrix.flavor }}
+          release_name: Release v1.0.${{ github.run_number }}-${{ matrix.flavor }}
+          token: ${{ secrets.TOKEN }}
