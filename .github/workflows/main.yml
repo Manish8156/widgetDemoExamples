@@ -107,7 +107,7 @@ jobs:
       # Step to manually install Flutter 3.5.0
       - name: Install Flutter 3.5.0
         run: |
-          git clone https://github.com/flutter/flutter.git -b 3.5.0 --depth 1
+          git clone https://github.com/flutter/flutter.git --branch 3.5.0 --depth 1
           echo "::add-path::Users/mind/Documents/sdk/flutter/bin"
           flutter --version
 
