@@ -6,23 +6,17 @@ import 'flutter_flame/game_screen.dart';
 
 Future<void> mainAppRun() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Flame.device.fullScreen();
-  Flame.device.setLandscape();
   // await AppLinkServices.init();
   // await Hive.initFlutter();
   // await Injector.setUp();
   // await sl<HiveAppRepository>().registerAdapters();
   // await sl<HiveAppRepository>().openBoxes();
 
-  final game = DinoGame();
-  runApp(MyApp(
-    game: game,
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  final DinoGame game;
-  const MyApp({super.key, required this.game});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -40,20 +34,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      // navigatorKey: ContextUtility.navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter',
-      routerConfig: GoRouter(routes: [
-        GoRoute(
-          path: "/",
-          builder: (context, state) => GameScreen(
-            game: widget.game,
-          ),
-        )
-      ]),
-      // home: GoogleMapChangeTheming(),
-      // routes: {'/': (_) => const HivePage(), '/green': (_) => const GreenPage(), '/red': (_) => const RedPage()},
+    return const MaterialApp(
+      home: InitialRoutes(),
     );
   }
 }
@@ -63,8 +45,10 @@ class InitialRoutes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange,
+    return Scaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
     );
   }
 }

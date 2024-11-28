@@ -12,7 +12,7 @@ part of 'cubic_page_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://.github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CubicPageState {
@@ -22,19 +22,22 @@ mixin _$CubicPageState {
   /// Create a copy of CubicPageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CubicPageStateCopyWith<CubicPageState> get copyWith => throw _privateConstructorUsedError;
+  $CubicPageStateCopyWith<CubicPageState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CubicPageStateCopyWith<$Res> {
-  factory $CubicPageStateCopyWith(CubicPageState value, $Res Function(CubicPageState) then) =
+  factory $CubicPageStateCopyWith(
+          CubicPageState value, $Res Function(CubicPageState) then) =
       _$CubicPageStateCopyWithImpl<$Res, CubicPageState>;
   @useResult
   $Res call({ViewState cubicStates, int value});
 }
 
 /// @nodoc
-class _$CubicPageStateCopyWithImpl<$Res, $Val extends CubicPageState> implements $CubicPageStateCopyWith<$Res> {
+class _$CubicPageStateCopyWithImpl<$Res, $Val extends CubicPageState>
+    implements $CubicPageStateCopyWith<$Res> {
   _$CubicPageStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -64,8 +67,10 @@ class _$CubicPageStateCopyWithImpl<$Res, $Val extends CubicPageState> implements
 }
 
 /// @nodoc
-abstract class _$$CubicPageStateImplCopyWith<$Res> implements $CubicPageStateCopyWith<$Res> {
-  factory _$$CubicPageStateImplCopyWith(_$CubicPageStateImpl value, $Res Function(_$CubicPageStateImpl) then) =
+abstract class _$$CubicPageStateImplCopyWith<$Res>
+    implements $CubicPageStateCopyWith<$Res> {
+  factory _$$CubicPageStateImplCopyWith(_$CubicPageStateImpl value,
+          $Res Function(_$CubicPageStateImpl) then) =
       __$$CubicPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -73,9 +78,11 @@ abstract class _$$CubicPageStateImplCopyWith<$Res> implements $CubicPageStateCop
 }
 
 /// @nodoc
-class __$$CubicPageStateImplCopyWithImpl<$Res> extends _$CubicPageStateCopyWithImpl<$Res, _$CubicPageStateImpl>
+class __$$CubicPageStateImplCopyWithImpl<$Res>
+    extends _$CubicPageStateCopyWithImpl<$Res, _$CubicPageStateImpl>
     implements _$$CubicPageStateImplCopyWith<$Res> {
-  __$$CubicPageStateImplCopyWithImpl(_$CubicPageStateImpl _value, $Res Function(_$CubicPageStateImpl) _then)
+  __$$CubicPageStateImplCopyWithImpl(
+      _$CubicPageStateImpl _value, $Res Function(_$CubicPageStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CubicPageState
@@ -102,7 +109,8 @@ class __$$CubicPageStateImplCopyWithImpl<$Res> extends _$CubicPageStateCopyWithI
 /// @nodoc
 
 class _$CubicPageStateImpl implements _CubicPageState {
-  const _$CubicPageStateImpl({this.cubicStates = ViewState.initial, this.value = 0});
+  const _$CubicPageStateImpl(
+      {this.cubicStates = ViewState.initial, this.value = 0});
 
   @override
   @JsonKey()
@@ -121,7 +129,8 @@ class _$CubicPageStateImpl implements _CubicPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CubicPageStateImpl &&
-            (identical(other.cubicStates, cubicStates) || other.cubicStates == cubicStates) &&
+            (identical(other.cubicStates, cubicStates) ||
+                other.cubicStates == cubicStates) &&
             (identical(other.value, value) || other.value == value));
   }
 
@@ -134,11 +143,13 @@ class _$CubicPageStateImpl implements _CubicPageState {
   @override
   @pragma('vm:prefer-inline')
   _$$CubicPageStateImplCopyWith<_$CubicPageStateImpl> get copyWith =>
-      __$$CubicPageStateImplCopyWithImpl<_$CubicPageStateImpl>(this, _$identity);
+      __$$CubicPageStateImplCopyWithImpl<_$CubicPageStateImpl>(
+          this, _$identity);
 }
 
 abstract class _CubicPageState implements CubicPageState {
-  const factory _CubicPageState({final ViewState cubicStates, final int value}) = _$CubicPageStateImpl;
+  const factory _CubicPageState(
+      {final ViewState cubicStates, final int value}) = _$CubicPageStateImpl;
 
   @override
   ViewState get cubicStates;
@@ -149,5 +160,6 @@ abstract class _CubicPageState implements CubicPageState {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CubicPageStateImplCopyWith<_$CubicPageStateImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$CubicPageStateImplCopyWith<_$CubicPageStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
